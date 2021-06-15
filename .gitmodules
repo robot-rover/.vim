@@ -1,9 +1,6 @@
-[submodule "bundle/vim-sneak"]
-	path = bundle/vim-sneak
+[submodule "pack/bundle/start/vim-sneak"]
+	path = pack/bundle/start/vim-sneak
 	url = https://github.com/justinmk/vim-sneak
-[submodule "bundle/vim-easymotion"]
-	path = bundle/vim-easymotion
+[submodule "pack/bundle/start/vim-easymotion"]
+	path = pack/bundle/start/vim-easymotion
 	url = https://github.com/easymotion/vim-easymotion
-[submodule "bundle/vim-colemak"]
-	path = bundle/vim-colemak
-	url = https://github.com/jooize/vim-colemak
