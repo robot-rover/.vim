@@ -9,6 +9,11 @@ noremap n j
 noremap e k
 noremap i l
 
+inoremap <C-h> <Left>
+inoremap <C-n> <Down>
+inoremap <C-e> <Up>
+inoremap <C-i> <Right>
+
 noremap k n
 noremap <S-k> <S-n>
 noremap s i
