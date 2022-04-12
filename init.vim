@@ -3,6 +3,22 @@ let g:EasyMotion_smartcase = 1
 
 set runtimepath^=~/.vim runtimepath+=~/.vim/after
 let &packpath=&runtimepath
+
+" :PlugInstall installs plugins
+call plug#begin()
+Plug 'tpope/vim-sensible'
+
+" Rust
+Plug 'neovim/nvim-lspconfig'
+Plug 'simrat39/rust-tools.nvim'
+
+" Debugging
+Plug 'nvim-lua/plenary.nvim'
+Plug 'mfussenegger/nvim-dap'
+call plug#end()
+
+:lua require('rust-tools').setup({})
+
 source ~/.vimrc
 
 " Trigger Easymotion with single <Leader>
