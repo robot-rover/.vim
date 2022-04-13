@@ -40,19 +40,3 @@ noremap <S-l> $
 " Ctrl-[ to leave insert mode
 noremap <C-@> <ESC>
 
-"Leave Terminal with ESC
-:tnoremap <Esc> <C-\><C-n>
-
-" Alt to move windows in any mode
-:tnoremap <A-h> <C-\><C-N><C-w>h
-:tnoremap <A-n> <C-\><C-N><C-w>j
-:tnoremap <A-e> <C-\><C-N><C-w>k
-:tnoremap <A-i> <C-\><C-N><C-w>l
-:inoremap <A-h> <C-\><C-N><C-w>h
-:inoremap <A-n> <C-\><C-N><C-w>j
-:inoremap <A-e> <C-\><C-N><C-w>k
-:inoremap <A-i> <C-\><C-N><C-w>l
-:nnoremap <A-h> <C-w>h
-:nnoremap <A-n> <C-w>j
-:nnoremap <A-e> <C-w>k
-:nnoremap <A-i> <C-w>l
