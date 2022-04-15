@@ -7,3 +7,6 @@
 [submodule "neovim"]
 	path = neovim
 	url = https://github.com/neovim/neovim
+[submodule "pack/bundle/start/vim-vinegar"]
+	path = pack/bundle/start/vim-vinegar
+	url = https://github.com/tpope/vim-vinegar.git/
