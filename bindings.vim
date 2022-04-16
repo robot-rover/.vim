@@ -10,6 +10,9 @@ map <Leader>W <Plug>(easymotion-b)
 map <Leader>n <Plug>(easymotion-j)
 map <Leader>e <Plug>(easymotion-k)
 
+nnoremap <C-p> <cmd>lua require('fzf-lua').files()<CR>
+nnoremap <Leader><Leader> <cmd>lua require('fzf-lua').lines()<CR>
+
 "Leave Terminal with ESC
 tnoremap <Esc> <C-\><C-n>
 

@@ -21,6 +21,7 @@ Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
 -- TODO: https://github.com/nvim-treesitter/nvim-treesitter-refactor
 
 -- Fuzzy File Search
+Plug('junegunn/fzf', {['do'] = vim.fn['fzf#install'] })
 Plug('ibhagwan/fzf-lua', {['branch'] = 'main'})
 Plug 'kyazdani42/nvim-web-devicons'
 
