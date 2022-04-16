@@ -18,6 +18,10 @@ ounmap i
 " Ctrl-jk Scrolling
 nnoremap <C-n> <C-d>
 nnoremap <C-e> <C-u>
+noremap zn zj
+noremap N zj
+noremap E zk
+noremap H J
 
 " Navigate in Normal Mode
 inoremap <C-h> <Left>
