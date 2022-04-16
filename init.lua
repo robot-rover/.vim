@@ -13,6 +13,10 @@ vim.call('plug#begin', '~/.config/nvim/plugged')
 Plug 'tpope/vim-sensible'
 Plug 'dracula/vim'
 
+-- Speed Plugins
+Plug 'nathom/filetype.nvim'
+Plug 'lewis6991/impatient.nvim'
+
 -- Smooth Scroll
 Plug 'karb94/neoscroll.nvim'
 
@@ -32,6 +36,8 @@ Plug 'simrat39/rust-tools.nvim'
 -- Git Integration
 Plug 'lewis6991/gitsigns.nvim'
 vim.call('plug#end')
+
+require('impatient')
 
 require('rust-tools').setup({})
 require('neoscroll').setup({hide_cursor = false, easing_function = "sine"})
