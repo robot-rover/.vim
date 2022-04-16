@@ -48,3 +48,6 @@ noremap <S-l> $
 " Ctrl-[ to leave insert mode
 noremap <C-@> <ESC>
 
+" == to reformat file
+noremap == gg=G''
+

@@ -17,8 +17,8 @@ Plug 'dracula/vim'
 Plug 'karb94/neoscroll.nvim'
 
 -- Treesitter
--- TODO: Add incremental search bindings
 Plug('nvim-treesitter/nvim-treesitter', {['do'] = ':TSUpdate'})
+-- TODO: https://github.com/nvim-treesitter/nvim-treesitter-refactor
 
 -- Fuzzy File Search
 Plug('ibhagwan/fzf-lua', {['branch'] = 'main'})
@@ -33,22 +33,25 @@ Plug 'lewis6991/gitsigns.nvim'
 vim.call('plug#end')
 
 require('rust-tools').setup({})
-require('neoscroll').setup({hide_cursor = false})
+require('neoscroll').setup({hide_cursor = false, easing_function = "sine"})
 require('gitsigns').setup()
 require('nvim-treesitter.configs').setup({
+-- TODO: Add incremental search bindings
   ensure_installed = { "c", "lua", "rust", "bash", "cmake", "cpp", "go",
   "java", "json", "latex", "make", "python", "toml", "verilog", "vim", "yaml"},
+  highlight = { enable = true },
+  indent = { enable = true },
 })
 
 -- neoscroll keybindings
 
 local t = {}
 -- Syntax: t[keys] = {function, {function arguments}}
-t['<C-e>'] = {'scroll', {'-vim.wo.scroll', 'true', '150'}}
-t['<C-n>'] = {'scroll', { 'vim.wo.scroll', 'true', '150'}}
-t['zt']    = {'zt', {'150'}}
-t['zz']    = {'zz', {'150'}}
-t['zb']    = {'zb', {'150'}}
+t['<C-e>'] = {'scroll', {'-vim.wo.scroll', 'true', '250'}}
+t['<C-n>'] = {'scroll', { 'vim.wo.scroll', 'true', '250'}}
+t['zt']    = {'zt', {'250'}}
+t['zz']    = {'zz', {'250'}}
+t['zb']    = {'zb', {'250'}}
 require('neoscroll.config').set_mappings(t)
 
 -- Folding w/ Treesitter
