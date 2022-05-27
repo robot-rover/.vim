@@ -2,6 +2,8 @@
 vim.cmd 'source ~/.vimrc'
 vim.cmd 'source ~/.vim/bindings.vim'
 
+require('env')
+
 -- Disable EasyMotion Defaults
 vim.g.EasyMotion_do_mapping = 0
 vim.g.EasyMotion_do_smartcase = 1
@@ -42,15 +44,15 @@ require('impatient')
 require('lspconfig').pylsp.setup({})
 
 -- require('rust-tools').setup({})
-require('neoscroll').setup({hide_cursor = false, easing_function = "sine"})
-require('gitsigns').setup()
-require('nvim-treesitter.configs').setup({
+require('neoscroll').setup { hide_cursor = false, easing_function = "sine" }
+require('gitsigns').setup { debug_mode=true }
+require('nvim-treesitter.configs').setup {
 -- TODO: Add incremental search bindings
   ensure_installed = { "c", "lua", "rust", "bash", "cmake", "cpp", "go",
   "java", "json", "make", "python", "toml", "verilog", "yaml"},
   highlight = { enable = true },
-  indent = { enable = true },
-})
+  --indent = { enable = true },
+}
 
 -- neoscroll keybindings
 
