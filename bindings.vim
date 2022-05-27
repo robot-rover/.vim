@@ -10,7 +10,7 @@ map <Leader>W <Plug>(easymotion-b)
 map <Leader>n <Plug>(easymotion-j)
 map <Leader>e <Plug>(easymotion-k)
 
-nnoremap <C-p> <cmd>lua require('fzf-lua').files()<CR>
+nnoremap <C-l> <cmd>lua require('fzf-lua').files()<CR>
 nnoremap <Leader><Leader> <cmd>lua require('fzf-lua').lines()<CR>
 
 "Leave Terminal with ESC
@@ -36,3 +36,11 @@ nnoremap <A-n> <C-w>j
 nnoremap <A-e> <C-w>k
 nnoremap <A-i> <C-w>l
 
+"Move between Folds
+nnoremap zn zj
+nnoremap ze zk
+
+" Navigate Menus
+inoremap <C-k> <C-n>
+inoremap <C-_> <C-p>
+inoremap <C-t> <c-x><c-o>

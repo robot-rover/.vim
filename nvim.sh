@@ -4,6 +4,9 @@ if [ -f ~/.config/nvim ]; then
   rm ~/.config/nvim
 fi
 ln -s ~/.vim ~/.config/nvim
-rm ~/.vimrc
+
+if [ -f ~/.vimrc ]; then
+  rm ~/.vimrc
+fi
 ln -s ~/.vim/.vimrc ~/.vimrc
 
