@@ -27,7 +27,7 @@ noremap H J
 inoremap <C-h> <Left>
 inoremap <C-n> <Down>
 inoremap <C-e> <Up>
-inoremap <TAB> <Right>
+inoremap <C-i> <Right>
 
 " Colemak Search
 noremap k n

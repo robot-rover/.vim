@@ -41,6 +41,6 @@ nnoremap zn zj
 nnoremap ze zk
 
 " Navigate Menus
-inoremap <C-k> <C-n>
-inoremap <C-_> <C-p>
+noremap <a-k> <C-n>
+noremap <a-o> <C-p>
 inoremap <a-t> <c-x><c-o>
