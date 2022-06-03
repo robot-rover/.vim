@@ -20,7 +20,7 @@ tnoremap <Esc> <C-\><C-n>
 tnoremap <C-h> <Left>
 tnoremap <C-n> <Down>
 tnoremap <C-e> <Up>
-tnoremap <TAB> <Right>
+tnoremap <C-i> <Right>
 
 " Alt to move windows in any mode
 tnoremap <A-h> <C-\><C-N><C-w>h
@@ -41,6 +41,10 @@ nnoremap zn zj
 nnoremap ze zk
 
 " Navigate Menus
-noremap <a-k> <C-n>
-noremap <a-o> <C-p>
+inoremap <a-n> <C-n>
+inoremap <a-e> <C-p>
+cnoremap <a-n> <Down>
+cnoremap <a-e> <Up>
+cnoremap <a-h> <Left>
+cnoremap <a-i> <Right>
 inoremap <a-t> <c-x><c-o>
