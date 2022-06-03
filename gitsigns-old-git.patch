@@ -1,0 +1,24 @@
+From c0c111bde0c511492c6e6c089438674db6330668 Mon Sep 17 00:00:00 2001
+From: Sam O'Brien <sam.obrien00@gmail.com>
+Date: Fri, 3 Jun 2022 07:34:49 -0500
+Subject: [PATCH] Remove --eol for old git
+
+---
+ lua/gitsigns/git.lua | 1 -
+ 1 file changed, 1 deletion(-)
+
+diff --git a/lua/gitsigns/git.lua b/lua/gitsigns/git.lua
+index 0e90e0c..abf1bd1 100644
+--- a/lua/gitsigns/git.lua
++++ b/lua/gitsigns/git.lua
+@@ -356,7 +356,6 @@ Obj.file_info = function(self, file)
+       '--stage',
+       '--others',
+       '--exclude-standard',
+-      '--eol',
+       file or self.file,
+    }, { supress_stderr = true })
+ 
+-- 
+1.8.3.1
+
