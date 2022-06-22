@@ -1,3 +1,6 @@
+" Close preview on completion
+autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+
 " Trigger Easymotion with single <Leader>
 map <Leader>f <Plug>(easymotion-bd-f)
 map <Leader>s <Plug>(easymotion-bd-f2)
