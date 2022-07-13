@@ -43,6 +43,28 @@ require('impatient')
 
 require('lspconfig').pylsp.setup({})
 
+-- LSP Signs
+vim.g.diagnostics_active = true
+function _G.toggle_diagnostics()
+  if vim.g.diagnostics_active then
+    vim.g.diagnostics_active = false
+    vim.diagnostic.reset()
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = function() end
+  else
+    vim.g.diagnostics_active = true
+    vim.lsp.handlers["textDocument/publishDiagnostics"] = vim.lsp.with(
+      vim.lsp.diagnostic.on_publish_diagnostics, {
+        virtual_text = true,
+        signs = true,
+        underline = true,
+        update_in_insert = false,
+      }
+    )
+  end
+end
+
+vim.api.nvim_set_keymap('n', '<leader>tt', ':call v:lua.toggle_diagnostics()<CR>',  {noremap = true, silent = true})
+
 -- require('rust-tools').setup({})
 require('neoscroll').setup { hide_cursor = false, easing_function = "sine" }
 require('gitsigns').setup { debug_mode=true }
