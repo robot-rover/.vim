@@ -10,3 +10,6 @@
 [submodule "pack/bundle/start/vim-indentwise"]
 	path = pack/bundle/start/vim-indentwise
 	url = https://github.com/jeetsukumaran/vim-indentwise
+[submodule "pack/bundle/start/colorizer"]
+	path = pack/bundle/start/colorizer
+	url = https://github.com/chrisbra/Colorizer

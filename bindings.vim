@@ -1,5 +1,6 @@
 " Close preview on completion
 autocmd! CompleteDone * if pumvisible() == 0 | pclose | endif
+autocmd BufRead *.term ColorHighlight
 
 " Trigger Easymotion with single <Leader>
 map <Leader>f <Plug>(easymotion-bd-f)
