@@ -51,3 +51,6 @@ noremap <C-@> <ESC>
 " == to reformat file
 noremap == gg=G''
 
+" Join Lines
+noremap M J
+noremap X -J
