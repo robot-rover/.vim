@@ -15,15 +15,20 @@ ounmap n
 ounmap e
 ounmap i
 
+" Use M as i in visual mode
+vnoremap M i
+
 " Ctrl-jk Scrolling
 nnoremap <C-n> <C-d>
 nnoremap <C-e> <C-u>
 noremap zn zj
 noremap N zj
 noremap E zk
+
+" Join lines with H
 noremap H J
 
-" Navigate in Normal Mode
+" Navigate in Insert Mode
 inoremap <C-h> <Left>
 inoremap <C-n> <Down>
 inoremap <C-e> <Up>
