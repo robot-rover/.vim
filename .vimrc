@@ -36,7 +36,9 @@ inoremap <C-i> <Right>
 
 " Colemak Search
 noremap k n
+noremap gk gn
 noremap <S-k> <S-n>
+noremap g<S-k> g<S-n>
 
 " Colemak Insert
 noremap s i
