@@ -1,0 +1,12 @@
+# Config for helix (`hx`)
+[keys.normal]
+n = "move_visual_line_down"
+e = "move_visual_line_up"
+i = "move_char_right"
+
+s = "insert_mode"
+S = "insert_at_line_start"
+
+[keys.insert]
+
+[keys.select]
