@@ -6,12 +6,13 @@ local function lua_keymap(mod_name, func, args)
   return cmd
 end
 
-local full_plugins = not vim.g.vscode
+local neovide_or_term = not vim.g.vscode
+local term_only = not vim.g.vscode and not vim.g.neovide
 
 return {
   {
     'dracula/vim',
-    enabled = full_plugins,
+    enabled = neovide_or_term,
     lazy = false,
     priority = 1000,
     config = function()
@@ -23,7 +24,7 @@ return {
   },
   {
     'karb94/neoscroll.nvim',
-    enabled = full_plugins,
+    enabled = term_only,
     keys = {
       { '<C-e>', lua_keymap('neoscroll', 'scroll', {'-vim.wo.scroll', 'true', '250'}), mode = {'n', 'x'} },
       { '<C-n>', lua_keymap('neoscroll', 'scroll', {'vim.wo.scroll', 'true', '250'}), mode = {'n', 'x'} },
@@ -35,7 +36,7 @@ return {
   },
   {
     'nvim-treesitter/nvim-treesitter',
-    enabled = full_plugins,
+    enabled = neovide_or_term,
     build = ":TSUpdate",
     opts = {
       -- TODO: Add incremental search bindings
@@ -49,7 +50,7 @@ return {
   -- { "junegunn/fzf", build = "./install --bin" },
   {
     'ibhagwan/fzf-lua',
-    enabled = full_plugins,
+    enabled = neovide_or_term,
     dependencies = { "nvim-tree/nvim-web-devicons" },
     keys = {
       { '<C-p>', "<cmd>lua require('fzf-lua').files()<CR>" },
@@ -59,7 +60,7 @@ return {
   },
   {
     'lewis6991/gitsigns.nvim',
-    enabled = full_plugins,
+    enabled = neovide_or_term,
     config = function()
       local gs = require('gitsigns')
       gs.setup{}
@@ -99,11 +100,11 @@ return {
   },
   {
     'tpope/vim-vinegar',
-    enabled = full_plugins,
+    enabled = neovide_or_term,
   },
   {
     'nathom/filetype.nvim',
-    enabled = full_plugins,
+    enabled = neovide_or_term,
   },
   {
     'justinmk/vim-sneak',
@@ -114,7 +115,7 @@ return {
   },
   {
     'nvim-lualine/lualine.nvim',
-    enabled = full_plugins,
+    enabled = neovide_or_term,
     lazy = false,
     priority = 900,
     dependencies = { "nvim-tree/nvim-web-devicons", "nvim-treesitter/nvim-treesitter" },
