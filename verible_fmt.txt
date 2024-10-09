@@ -1,0 +1,4 @@
+--indentation_spaces=2
+--wrap_spaces=2
+--assignment_statement_alignment=align
+--formal_parameters_alignment=align

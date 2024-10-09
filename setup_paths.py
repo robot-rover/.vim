@@ -9,6 +9,7 @@ def create_symlink(target, link_name):
             link_name.unlink()
         else:
             raise RuntimeError(f'{link_name} exists and is not a symlink')
+    print(f"Creating link {link_name} -> {target}")
     os.symlink(target, link_name)
 
 dotvim_dir = Path(__file__).resolve().parent
@@ -24,5 +25,8 @@ else:
     raise RuntimeError(f'Unsupported OS: {os.name}')
 
 create_symlink(dotvim_dir, nvim_config_dir)
+create_symlink(dotvim_dir / '.vimrc', vimrc_file)
 
-create_symlink(dotvim_dir / 'vimrc', vimrc_file)
+for yazi_file in ('yazi', 'keymap', 'theme'):
+  filename = f'{yazi_file}.toml'
+  create_symlink(dotvim_dir / 'yazi' / filename, yazi_config_dir / filename)

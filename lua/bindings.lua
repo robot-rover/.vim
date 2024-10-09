@@ -26,9 +26,9 @@ vim.keymap.set('n', 'zn', 'zj')
 vim.keymap.set('n', 'ze', 'zk')
 
 --  Navigate Menus
-vim.keymap.set('i', '<C-k>', '<C-n>')
-vim.keymap.set('i', '<C-_>', '<C-p>')
-vim.keymap.set('i', '<a-t>', '<c-x><c-o>')
+-- vim.keymap.set('i', '<C-n>', '<C-n>')
+vim.keymap.set('i', '<C-e>', '<C-p>')
+-- vim.keymap.set('i', '<a-t>', '<c-x><c-o>')
 
 -- Keys I can still canibalize
 -- <C-y>: Scroll up one line

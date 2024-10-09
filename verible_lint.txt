@@ -1,0 +1,3 @@
+-explicit-parameter-storage-type
+parameter-name-style=localparam_style:ALL_CAPS;parameter_style:ALL_CAPS
+-generate-label-prefix
