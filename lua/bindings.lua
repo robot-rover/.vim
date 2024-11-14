@@ -1,6 +1,11 @@
 -- Leave Terminal with ESC
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 
+-- Leave insert mode with Alt-j
+vim.keymap.set("i", "<A-k>", "<Esc>")
+-- Insertmode ctrl backspace
+vim.keymap.set("i", "<C-BS>", "<C-W>")
+
 --  Navigate in Terminal Mode
 vim.keymap.set('t', '<C-h>', '<Left>')
 vim.keymap.set('t', '<C-n>', '<Down>')
@@ -32,6 +37,6 @@ vim.keymap.set('i', '<C-e>', '<C-p>')
 
 -- Keys I can still canibalize
 -- <C-y>: Scroll up one line
--- Q: Ex mode
+-- Q: Ex mode (nevermind, this is Git now)
 -- ?: Reverse find (just use N vs n)
 -- [ and ]: Unused
