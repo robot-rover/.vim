@@ -1,7 +1,7 @@
 -- Leave Terminal with ESC
 vim.keymap.set('t', '<Esc>', [[<C-\><C-n>]])
 
--- Leave insert mode with Alt-j
+-- Leave insert mode with Alt-k
 vim.keymap.set("i", "<A-k>", "<Esc>")
 -- Insertmode ctrl backspace
 vim.keymap.set("i", "<C-BS>", "<C-W>")
