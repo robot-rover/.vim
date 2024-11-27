@@ -10,13 +10,40 @@ local neovide_or_term = not vim.g.vscode
 local term_only = not vim.g.vscode and not vim.g.neovide
 
 if vim.g.neovide then
-  vim.opt.guifont = { "FiraCode Nerd Font", ":h8" }
+  vim.opt.guifont = { "FiraCode Nerd Font", ":h12" }
 end
 
 local python3_override = os.getenv("NVIM_PYTHON_OVERRIDE")
 if python3_override ~= nil and python3_override ~= "" then
   vim.g.python3_host_prog = python3_override
 end
+
+local copilot_lualine = {
+  'copilot',
+  symbols = {
+    status = {
+      icons = {
+        enabled = "",
+        sleep = "󰒲",   -- auto-trigger disabled
+        disabled = "⭘",
+        warning = "",
+        unknown = " "
+      },
+      hl = {
+        enabled = "#50FA7B",
+        sleep = "#AEB7D0",
+        disabled = "#6272A4",
+        warning = "#FFB86C",
+        unknown = "#FF5555"
+      }
+    },
+    spinners = { "⠋", "⠙", "⠹", "⠸", "⠼", "⠴", "⠦", "⠧", "⠇", "⠏" },
+    spinner_color = "#6272A4",
+  },
+  show_colors = false,
+  show_loading = true,
+}
+
 
 return {
   -- Theme
@@ -168,9 +195,9 @@ return {
         lualine_a = { 'mode' },
         lualine_b = { 'filename' },
         lualine_c = { 'nvim_treesitter#statusline' },
-        lualine_x = {},
+        lualine_x = { copilot_lualine },
         lualine_y = { 'filetype' },
-        lualine_z = { 'location' },
+        lualine_z = { 'progress', 'location' },
       },
     },
   },
@@ -266,6 +293,7 @@ return {
       -- if there is a language server active in the file
       local lsp_attach = function(client, bufnr)
         local opts = {buffer = bufnr}
+        vim.lsp.inlay_hint.enable(true)
 
         vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
         vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
@@ -279,7 +307,7 @@ return {
         vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
         vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
         vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-        vim.keymap.set('n', '<F4>', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
+        vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
       end
 
       lsp_zero.extend_lspconfig({
@@ -323,6 +351,9 @@ return {
         command = "StripWhitespace"
       })
     end,
+  },
+  {
+    "AndreM222/copilot-lualine",
   },
 }
 
