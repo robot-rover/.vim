@@ -65,11 +65,11 @@ return {
     'karb94/neoscroll.nvim',
     cond = term_only,
     keys = {
-      { '<C-e>', lua_keymap('neoscroll', 'scroll', {'-vim.wo.scroll', 'true', '250'}), mode = {'n', 'x'} },
-      { '<C-n>', lua_keymap('neoscroll', 'scroll', {'vim.wo.scroll', 'true', '250'}), mode = {'n', 'x'} },
-      { 'zt', lua_keymap('neoscroll', 'zt', {'250'}), mode = {'n', 'x'} },
-      { 'zz', lua_keymap('neoscroll', 'zz', {'250'}), mode = {'n', 'x'} },
-      { 'zb', lua_keymap('neoscroll', 'zb', {'250'}), mode = {'n', 'x'} },
+      { '<C-e>', lua_keymap('neoscroll', 'scroll', {'-vim.wo.scroll', '{move_cursor=true, duration=250}'}), mode = {'n', 'x'} },
+      { '<C-n>', lua_keymap('neoscroll', 'scroll', {'vim.wo.scroll', '{move_cursor=true, duration=250}'}), mode = {'n', 'x'} },
+      { 'zt', lua_keymap('neoscroll', 'zt', {'{half_win_duration=250}'}), mode = {'n', 'x'} },
+      { 'zz', lua_keymap('neoscroll', 'zz', {'{half_win_duration=250}'}), mode = {'n', 'x'} },
+      { 'zb', lua_keymap('neoscroll', 'zb', {'{half_win_duration=250}'}), mode = {'n', 'x'} },
     },
     opts = { hide_cursor = false, easing_function = "sine", mappings = {} },
   },
@@ -84,7 +84,7 @@ return {
       -- TODO: Add incremental search bindings
         ensure_installed = { "c", "lua", "rust", "bash", "cmake", "cpp", "go",
         "java", "json", "make", "python", "toml", "verilog", "yaml", "vim",
-        "vimdoc", "query"},
+        "vimdoc", "query", "just", "nim"},
         highlight = { enable = true },
         -- indent = { enable = true },
       })
@@ -156,7 +156,7 @@ return {
       { '<Leader>f', '<Plug>(easymotion-bd-f)', mode = '' },
       { '<Leader>s', '<Plug>(easymotion-bd-f2)', mode = '' },
       { '<Leader>F', '<Plug>(easymotion-overwin-f)' },
-      { '<Leader>s', '<Plug>(easymotion-overwin-f2)' },
+      { '<Leader>S', '<Plug>(easymotion-overwin-f2)' },
     },
   },
 
@@ -184,7 +184,7 @@ return {
 
   -- Status line
   {
-    'nvim-lualine/lualine.nvim',
+    'nvim-lualine]lualine.nvim',
     cond = neovide_or_term,
     lazy = false,
     priority = 900,
@@ -242,6 +242,7 @@ return {
   -- LSP Easy Configuration
   {
     'VonHeikemen/lsp-zero.nvim',
+    cond = neovide_or_term,
     branch = 'v4.x',
     lazy = true,
     config = false,
@@ -250,6 +251,7 @@ return {
   -- Autocompletion
   {
     'hrsh7th/nvim-cmp',
+    cond = neovide_or_term,
     event = 'InsertEnter',
     dependencies = {
       {'L3MON4D3/LuaSnip'},
@@ -281,6 +283,7 @@ return {
   -- LSP
   {
     'neovim/nvim-lspconfig',
+    cond = neovide_or_term,
     cmd = 'LspInfo',
     event = {'BufReadPre', 'BufNewFile'},
     dependencies = {
@@ -325,6 +328,7 @@ return {
   },
   {
     "zbirenbaum/copilot-cmp",
+    cond = neovide_or_term,
     event = "InsertEnter",
     config = function () require("copilot_cmp").setup() end,
     dependencies = {
