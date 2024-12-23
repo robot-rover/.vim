@@ -10,7 +10,7 @@ local neovide_or_term = not vim.g.vscode
 local term_only = not vim.g.vscode and not vim.g.neovide
 
 if vim.g.neovide then
-  vim.opt.guifont = { "FiraCode Nerd Font", ":h12" }
+  vim.opt.guifont = { "FiraCode Nerd Font", ":h8" }
 end
 
 local python3_override = os.getenv("NVIM_PYTHON_OVERRIDE")
@@ -79,28 +79,31 @@ return {
     'nvim-treesitter/nvim-treesitter',
     cond = neovide_or_term,
     build = ":TSUpdate",
-	config = function()
-	  require('nvim-treesitter').setup({
-      -- TODO: Add incremental search bindings
-        ensure_installed = { "c", "lua", "rust", "bash", "cmake", "cpp", "go",
-        "java", "json", "make", "python", "toml", "verilog", "yaml", "vim",
-        "vimdoc", "query", "just", "nim"},
+    config = function()
+      local configs = require("nvim-treesitter.configs")
+      configs.setup({
+        ensure_installed = {
+          "c", "lua", "rust", "bash", "cmake", "cpp", "go", "java", "json",
+          "make", "python", "toml", "verilog", "yaml", "vim", "vimdoc",
+          "query", "just", "nim", "git_rebase", "git_config", "gitcommit",
+          "gitignore",
+        },
+        sync_install = false,
+        auto_install = true,
+        incremental_selection = {
+          enable = true,
+          keymaps = {
+            -- set to `false` to disable one of the mappings
+            init_selection = "gnn",
+            node_incremental = "grn",
+            scope_incremental = "grc",
+            node_decremental = "grm",
+          },
+        },
         highlight = { enable = true },
-        -- indent = { enable = true },
+        indent = { enable = true },
       })
-	  local parser_config = require("nvim-treesitter.parsers").get_parser_configs()
-      parser_config.vhdl = {
-        install_info = {
-		  -- url = vim.fn.stdpath("config") .. "/tree-sitter-vhdl-main", -- local path or git repo
-		  url = "https://github.com/alemuller/tree-sitter-vhdl",
-          files = {"src/parser.c"}, -- note that some parsers also require src/scanner.c or src/scanner.cc
-          branch = "main", -- default branch in case of git repo if different from master
-          -- optional entries:
-          generate_requires_npm = false, -- if stand-alone parser without npm dependencies
-          requires_generate_from_grammar = false, -- if folder contains pre-generated src/parser.c
-		}
-      }
-	end,
+    end,
   },
 
   -- Fuzzy Finder
@@ -184,7 +187,7 @@ return {
 
   -- Status line
   {
-    'nvim-lualine]lualine.nvim',
+    'nvim-lualine/lualine.nvim',
     cond = neovide_or_term,
     lazy = false,
     priority = 900,
@@ -321,9 +324,10 @@ return {
 
       -- These are just examples. Replace them with the language
       -- servers you have installed in your system
-      require('lspconfig').vhdl_ls.setup({})
-      require('lspconfig').rust_analyzer.setup({})
-      require('lspconfig').jedi_language_server.setup({})
+      require('lspconfig').vhdl_ls.setup{}
+      require('lspconfig').rust_analyzer.setup{}
+      require('lspconfig').jedi_language_server.setup{})
+	  require('lspconfig').nimls.setup{}
     end
   },
   {
