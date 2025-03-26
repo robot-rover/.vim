@@ -326,7 +326,7 @@ return {
       -- servers you have installed in your system
       require('lspconfig').vhdl_ls.setup{}
       require('lspconfig').rust_analyzer.setup{}
-      require('lspconfig').jedi_language_server.setup{})
+      require('lspconfig').jedi_language_server.setup{}
 	  require('lspconfig').nimls.setup{}
     end
   },

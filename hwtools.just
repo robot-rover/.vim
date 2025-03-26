@@ -23,10 +23,10 @@ _hwtools_check:
     if [ -z "${WORKSPACE_ROOTDIR:-}" ]; then echo "Run hwsetup first!"; exit 1; fi
 
 [no-cd]
-vhdl_ls MODELSIM_DIR:
+vhdl_ls:
     #!powershell.exe
     $REPO_ROOT = git rev-parse --show-toplevel
-    gen_vhdl_toml {{ MODELSIM_DIR }}/vcom_filesfull.txt $REPO_ROOT
+    gen_vhdl_toml {{ PROJ_NAME }}
 
 compile: _hwtools_check
     cd {{ HDL_DIR }}; python {{ COMPILE_CALL }}
