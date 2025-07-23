@@ -18,6 +18,10 @@ if python3_override ~= nil and python3_override ~= "" then
   vim.g.python3_host_prog = python3_override
 end
 
+if vim.fn.has("win64") then
+  -- vim.opt.shell = 'powershell.exe'
+end
+
 local copilot_lualine = {
   'copilot',
   symbols = {
@@ -163,13 +167,6 @@ return {
     },
   },
 
-  -- Netrw rework (don't need bc of yazi)
-  {
-    'tpope/vim-vinegar',
-    -- cond = neovide_or_term,
-    enabled = false,
-  },
-
   -- Auto filetype detection
   {
     'nathom/filetype.nvim',
@@ -214,42 +211,6 @@ return {
       { "-f", "<cmd>BrootFile<cr>", desc = "Open broot at the current file" }
     },
   },
-  {
-    "mikavilpas/yazi.nvim",
-    enabled = false,
-    event = "VeryLazy",
-    dependencies = { 'nvim-lua/plenary.nvim' },
-    keys = {
-      {
-        "--",
-        "<cmd>Yazi<cr>",
-        desc = "Open yazi at the current file",
-      },
-      {
-        -- Open in the current working directory
-        "-c",
-        "<cmd>Yazi cwd<cr>",
-        desc = "Open the file manager in nvim's working directory" ,
-      },
-    },
-    ---@type YaziConfig
-    opts = {
-      -- if you want to open yazi instead of netrw, see below for more info
-      open_for_directories = true,
-      keymaps = {
-        show_help = '<f1>',
-      },
-    },
-  },
-
-  -- LSP Easy Configuration
-  {
-    'VonHeikemen/lsp-zero.nvim',
-    cond = neovide_or_term,
-    branch = 'v4.x',
-    lazy = true,
-    config = false,
-  },
 
   -- Autocompletion
   {
@@ -293,41 +254,34 @@ return {
       {'hrsh7th/cmp-nvim-lsp'},
     },
     config = function()
-      local lsp_zero = require('lsp-zero')
-
       -- lsp_attach is where you enable features that only work
       -- if there is a language server active in the file
-      local lsp_attach = function(client, bufnr)
-        local opts = {buffer = bufnr}
-        vim.lsp.inlay_hint.enable(true)
+      vim.api.nvim_create_autocmd('LspAttach', {
+        callback = function(args)
+          local bufnr = args.buf
+          local cliend = args.data.client
+          local opts = {buffer = bufnr}
+          vim.lsp.inlay_hint.enable(true)
 
-        vim.keymap.set('n', 'gh', '<cmd>lua vim.lsp.buf.hover()<cr>', opts)
-        vim.keymap.set('n', 'gd', '<cmd>lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', '<Leader>dt', '<cmd>tab split | lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', '<Leader>dv', '<cmd>vs | lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', '<Leader>ds', '<cmd>sp | lua vim.lsp.buf.definition()<cr>', opts)
-        vim.keymap.set('n', 'gD', '<cmd>lua vim.lsp.buf.declaration()<cr>', opts)
-        vim.keymap.set('n', 'gi', '<cmd>lua vim.lsp.buf.implementation()<cr>', opts)
-        vim.keymap.set('n', 'go', '<cmd>lua vim.lsp.buf.type_definition()<cr>', opts)
-        vim.keymap.set('n', 'gr', '<cmd>lua vim.lsp.buf.references()<cr>', opts)
-        vim.keymap.set('n', 'gs', '<cmd>lua vim.lsp.buf.signature_help()<cr>', opts)
-        vim.keymap.set('n', '<F2>', '<cmd>lua vim.lsp.buf.rename()<cr>', opts)
-        vim.keymap.set({'n', 'x'}, '<F3>', '<cmd>lua vim.lsp.buf.format({async = true})<cr>', opts)
-        vim.keymap.set('n', 'ga', '<cmd>lua vim.lsp.buf.code_action()<cr>', opts)
-      end
-
-      lsp_zero.extend_lspconfig({
-        sign_text = true,
-        lsp_attach = lsp_attach,
-        capabilities = require('cmp_nvim_lsp').default_capabilities()
+          vim.keymap.set('n', 'gh', vim.lsp.buf.hover, opts)
+          vim.keymap.set('n', 'gd', vim.lsp.buf.definition, opts)
+          vim.keymap.set('n', '<Leader>dt', '<cmd>tab split | lua vim.lsp.buf.definition()<cr>', opts)
+          vim.keymap.set('n', '<Leader>dv', '<cmd>vs | lua vim.lsp.buf.definition()<cr>', opts)
+          vim.keymap.set('n', '<Leader>ds', '<cmd>sp | lua vim.lsp.buf.definition()<cr>', opts)
+          vim.keymap.set('n', 'gD', vim.lsp.buf.declaration, opts)
+          vim.keymap.set('n', 'gi', vim.lsp.buf.implementation, opts)
+          vim.keymap.set('n', 'go', vim.lsp.buf.type_definition, opts)
+          vim.keymap.set('n', 'gr', vim.lsp.buf.references, opts)
+          vim.keymap.set('n', 'gs', vim.lsp.buf.signature_help, opts)
+          vim.keymap.set('n', '<F2>', vim.lsp.buf.rename, opts)
+          vim.keymap.set({'n', 'x'}, '<F3>', function() vim.lsp.buf.format({async = true}) end, opts)
+          vim.keymap.set('n', 'ga', vim.lsp.buf.code_action, opts)
+        end
       })
 
-      -- These are just examples. Replace them with the language
-      -- servers you have installed in your system
-      require('lspconfig').vhdl_ls.setup{}
-      require('lspconfig').rust_analyzer.setup{}
-      require('lspconfig').jedi_language_server.setup{}
-	  require('lspconfig').nimls.setup{}
+      -- vim.lsp.enable('vhdl_ls')
+      vim.lsp.enable('rust_analyzer')
+      vim.lsp.enable('jedi_language_server')
     end
   },
   {
