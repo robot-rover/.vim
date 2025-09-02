@@ -321,6 +321,10 @@ return {
   {
     "AndreM222/copilot-lualine",
   },
+  {
+    "drtychai/ungrammar.vim",
+    event = "BufEnter *.ungram",
+  },
 }
 
 -- Future plugins
